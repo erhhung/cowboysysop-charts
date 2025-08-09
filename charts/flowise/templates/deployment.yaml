@@ -134,7 +134,11 @@ spec:
             - /bin/sh
             - -ec
             - |
+              {{- if and .Values.externalRedis.enabled .Values.externalRedis.useTLS }}
+              wait4x redis "rediss://default:${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}?skip_verify=true" --timeout 0
+              {{- else }}
               wait4x redis "redis://default:${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}" --timeout 0
+              {{- end }}
           env:
             - name: REDIS_HOST
               value: {{ include "flowise.redis.host" . | quote }}

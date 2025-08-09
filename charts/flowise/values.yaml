@@ -680,6 +680,9 @@ externalRedis:
   ## @param externalRedis.existingSecretKeyPassword Key in existing Secret that contains Redis password
   existingSecretKeyPassword: redis-password
 
+  ## @param externalRedis.useTLS Whether to connect to Redis over TLS
+  useTLS: false
+
 ## @section Wait parameters
 
 wait:
