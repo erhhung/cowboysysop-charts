@@ -301,6 +301,12 @@ extraVolumes: []
 ## @param extraVolumeMounts Optionally specify extra list of additional volumeMounts
 extraVolumeMounts: []
 
+## @param extraInitContainers Optionally specify extra list of additional init containers
+extraInitContainers: []
+  # - name: hello-world
+  #   image: busybox:latest
+  #   command: ["/bin/sh", "-c", "echo Hello World"]
+
 persistence:
   ## @param persistence.enabled Enable persistence using PVC
   enabled: false
@@ -532,6 +538,12 @@ worker:
 
   ## @param worker.extraVolumeMounts Optionally specify extra list of additional volumeMounts
   extraVolumeMounts: []
+
+  ## @param worker.extraInitContainers Optionally specify extra list of additional init containers
+  extraInitContainers: []
+    # - name: hello-world
+    #   image: busybox:latest
+    #   command: ["/bin/sh", "-c", "echo Hello World"]
 
 ## @section MariaDB parameters
 
