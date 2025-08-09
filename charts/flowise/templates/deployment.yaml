@@ -135,7 +135,10 @@ spec:
             - -ec
             - |
               {{- if and .Values.externalRedis.enabled .Values.externalRedis.useTLS }}
-              wait4x redis "rediss://default:${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}?skip_verify=true" --timeout 0
+              # wait4x redis "rediss://default:${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}?skip_verify=true" --timeout 0
+              # use simple TCP check until wait4x upgrades go-redis
+              # package to include support for `?skip_verify` param
+              wait4x tcp "${REDIS_HOST}:${REDIS_PORT}" --timeout 0
               {{- else }}
               wait4x redis "redis://default:${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}" --timeout 0
               {{- end }}
