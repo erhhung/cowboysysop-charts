@@ -164,7 +164,7 @@ spec:
             {{- end }}
         {{- end }}
         {{- with .Values.extraInitContainers }}
-        {{- toYaml . | nindent 8 }}
+        {{- include "common.tplvalues.render" (dict "value" .Values.extraInitContainers "context" $) | nindent 8 }}
         {{- end }}
       containers:
         - name: flowise
